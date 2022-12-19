@@ -31,7 +31,7 @@ class PimcorePaymentProviderUnzerBundle extends AbstractPimcoreBundle
         return 'pimcore/payment-provider-unzer';
     }
 
-    public function getInstaller(): ?Installer
+    public function getInstaller(): Installer
     {
         return $this->container->get(Installer::class);
     }
