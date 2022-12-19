@@ -271,7 +271,6 @@ class Unzer extends AbstractPayment implements PaymentInterface
             if ($transaction instanceof Charge) {
                 $merchantMessage = $transaction->getMessage()->getCustomer();
             }
-
         } catch (UnzerApiException $e) {
             $clientMessage = $e->getClientMessage();
             $merchantMessage = $e->getMerchantMessage();
