@@ -325,7 +325,7 @@ class Unzer extends AbstractPayment implements PaymentInterface
         $this->authorizedData = $authorizedData;
     }
 
-    public function executeDebit(PriceInterface $price = null, $reference = null): StatusInterface
+    public function executeDebit(?PriceInterface $price = null, ?string $reference = null): StatusInterface
     {
         throw new \Exception('not implemented yet');
     }
