@@ -330,7 +330,7 @@ class Unzer extends AbstractPayment implements PaymentInterface
         throw new \Exception('not implemented yet');
     }
 
-    public function executeCredit(PriceInterface $price, $reference, $transactionId): StatusInterface
+    public function executeCredit(PriceInterface $price, string $reference, string $transactionId): StatusInterface
     {
         throw new \Exception('not implemented yet');
     }
