@@ -34,6 +34,7 @@ use UnzerSDK\Resources\CustomerFactory;
 use UnzerSDK\Resources\EmbeddedResources\Address;
 use UnzerSDK\Resources\Payment;
 use UnzerSDK\Resources\TransactionTypes\Cancellation;
+use UnzerSDK\Resources\TransactionTypes\Charge;
 
 class Unzer extends AbstractPayment implements PaymentInterface
 {
@@ -267,7 +268,10 @@ class Unzer extends AbstractPayment implements PaymentInterface
 
             // Check the result message of the transaction to find out what went wrong.
             $transaction = $payment->getChargeByIndex(0);
-            $merchantMessage = $transaction->getMessage()->getCustomer();
+            if ($transaction instanceof Charge) {
+                $merchantMessage = $transaction->getMessage()->getCustomer();
+            }
+
         } catch (UnzerApiException $e) {
             $clientMessage = $e->getClientMessage();
             $merchantMessage = $e->getMerchantMessage();
