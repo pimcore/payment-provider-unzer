@@ -68,7 +68,7 @@ class Unzer extends AbstractPayment implements PaymentInterface
         $this->publicAccessKey = $options['publicAccessKey'];
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'Unzer';
     }
@@ -201,7 +201,7 @@ class Unzer extends AbstractPayment implements PaymentInterface
         return $errorUrl . 'merchantMessage=' . urlencode($merchantMessage) . '&clientMessage=' . urlencode($clientMessage);
     }
 
-    public function handleResponse($response)
+    public function handleResponse($response): StatusInterface
     {
         $order = $response['order'];
         if (!$order instanceof OnlineShopOrder) {
@@ -312,7 +312,7 @@ class Unzer extends AbstractPayment implements PaymentInterface
     /**
      * @inheritdoc
      */
-    public function getAuthorizedData()
+    public function getAuthorizedData(): array
     {
         return $this->authorizedData;
     }
@@ -325,12 +325,12 @@ class Unzer extends AbstractPayment implements PaymentInterface
         $this->authorizedData = $authorizedData;
     }
 
-    public function executeDebit(PriceInterface $price = null, $reference = null)
+    public function executeDebit(PriceInterface $price = null, $reference = null): StatusInterface
     {
         throw new \Exception('not implemented yet');
     }
 
-    public function executeCredit(PriceInterface $price, $reference, $transactionId)
+    public function executeCredit(PriceInterface $price, $reference, $transactionId): StatusInterface
     {
         throw new \Exception('not implemented yet');
     }
