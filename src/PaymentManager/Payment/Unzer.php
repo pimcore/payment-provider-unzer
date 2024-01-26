@@ -320,7 +320,7 @@ class Unzer extends AbstractPayment implements PaymentInterface
     /**
      * @inheritdoc
      */
-    public function setAuthorizedData(array $authorizedData)
+    public function setAuthorizedData(array $authorizedData): void
     {
         $this->authorizedData = $authorizedData;
     }
