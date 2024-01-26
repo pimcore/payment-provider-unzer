@@ -223,18 +223,6 @@ public function filterByCalculatedSegments ($data, $operator = '='): static
 }
 
 /**
-* Filter by ssoIdentities (SSO Identities)
-* @param mixed $data
-* @param string $operator SQL comparison operator, e.g. =, <, >= etc. You can use "?" as placeholder, e.g. "IN (?)"
-* @return $this
-*/
-public function filterBySsoIdentities ($data, $operator = '='): static
-{
-	$this->getClass()->getFieldDefinition("ssoIdentities")->addListingFilter($this, $data, $operator);
-	return $this;
-}
-
-/**
 * Filter by passwordRecoveryToken (Password Recovery Token)
 * @param string|int|float|array|Model\Element\ElementInterface $data  comparison data, can be scalar or array (if operator is e.g. "IN (?)")
 * @param string $operator  SQL comparison operator, e.g. =, <, >= etc. You can use "?" as placeholder, e.g. "IN (?)"

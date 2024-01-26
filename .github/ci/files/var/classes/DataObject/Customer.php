@@ -25,7 +25,6 @@
  * - manualSegments [advancedManyToManyObjectRelation]
  * - calculatedSegments [advancedManyToManyObjectRelation]
  * - password [password]
- * - ssoIdentities [manyToManyObjectRelation]
  * - passwordRecoveryToken [input]
  * - passwordRecoveryTokenDate [datetime]
  */
@@ -54,7 +53,6 @@ use Pimcore\Model\DataObject\PreGetValueHookInterface;
 * @method static \Pimcore\Model\DataObject\Customer\Listing|\Pimcore\Model\DataObject\Customer|null getByNewsletterConfirmToken(mixed $value, ?int $limit = null, int $offset = 0, ?array $objectTypes = null)
 * @method static \Pimcore\Model\DataObject\Customer\Listing|\Pimcore\Model\DataObject\Customer|null getByManualSegments(mixed $value, ?int $limit = null, int $offset = 0, ?array $objectTypes = null)
 * @method static \Pimcore\Model\DataObject\Customer\Listing|\Pimcore\Model\DataObject\Customer|null getByCalculatedSegments(mixed $value, ?int $limit = null, int $offset = 0, ?array $objectTypes = null)
-* @method static \Pimcore\Model\DataObject\Customer\Listing|\Pimcore\Model\DataObject\Customer|null getBySsoIdentities(mixed $value, ?int $limit = null, int $offset = 0, ?array $objectTypes = null)
 * @method static \Pimcore\Model\DataObject\Customer\Listing|\Pimcore\Model\DataObject\Customer|null getByPasswordRecoveryToken(mixed $value, ?int $limit = null, int $offset = 0, ?array $objectTypes = null)
 * @method static \Pimcore\Model\DataObject\Customer\Listing|\Pimcore\Model\DataObject\Customer|null getByPasswordRecoveryTokenDate(mixed $value, ?int $limit = null, int $offset = 0, ?array $objectTypes = null)
 */
@@ -81,7 +79,6 @@ public const FIELD_PROFILING = 'profiling';
 public const FIELD_MANUAL_SEGMENTS = 'manualSegments';
 public const FIELD_CALCULATED_SEGMENTS = 'calculatedSegments';
 public const FIELD_PASSWORD = 'password';
-public const FIELD_SSO_IDENTITIES = 'ssoIdentities';
 public const FIELD_PASSWORD_RECOVERY_TOKEN = 'passwordRecoveryToken';
 public const FIELD_PASSWORD_RECOVERY_TOKEN_DATE = 'passwordRecoveryTokenDate';
 
@@ -107,7 +104,6 @@ protected $profiling;
 protected $manualSegments;
 protected $calculatedSegments;
 protected $password;
-protected $ssoIdentities;
 protected $passwordRecoveryToken;
 protected $passwordRecoveryTokenDate;
 
@@ -818,49 +814,6 @@ public function setPassword(?string $password): static
 {
 	$this->password = $password;
 
-	return $this;
-}
-
-/**
-* Get ssoIdentities - SSO Identities
-* @return \Pimcore\Model\DataObject\SsoIdentity[]
-*/
-public function getSsoIdentities(): array
-{
-	if ($this instanceof PreGetValueHookInterface && !\Pimcore::inAdmin()) {
-		$preValue = $this->preGetValue("ssoIdentities");
-		if ($preValue !== null) {
-			return $preValue;
-		}
-	}
-
-	$data = $this->getClass()->getFieldDefinition("ssoIdentities")->preGetData($this);
-
-	if ($data instanceof \Pimcore\Model\DataObject\Data\EncryptedField) {
-		return $data->getPlain();
-	}
-
-	return $data;
-}
-
-/**
-* Set ssoIdentities - SSO Identities
-* @param \Pimcore\Model\DataObject\SsoIdentity[] $ssoIdentities
-* @return $this
-*/
-public function setSsoIdentities(?array $ssoIdentities): static
-{
-	/** @var \Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation $fd */
-	$fd = $this->getClass()->getFieldDefinition("ssoIdentities");
-	$hideUnpublished = \Pimcore\Model\DataObject\Concrete::getHideUnpublished();
-	\Pimcore\Model\DataObject\Concrete::setHideUnpublished(false);
-	$currentData = $this->getSsoIdentities();
-	\Pimcore\Model\DataObject\Concrete::setHideUnpublished($hideUnpublished);
-	$isEqual = $fd->isEqual($currentData, $ssoIdentities);
-	if (!$isEqual) {
-		$this->markFieldDirty("ssoIdentities", true);
-	}
-	$this->ssoIdentities = $fd->preSetData($this, $ssoIdentities);
 	return $this;
 }
 
