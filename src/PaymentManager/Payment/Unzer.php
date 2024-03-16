@@ -70,11 +70,6 @@ class Unzer extends AbstractPayment
         return $this->publicAccessKey;
     }
 
-    public function initPayment(PriceInterface $price, array $config): void
-    {
-        throw new UnsupportedException('use startPayment instead as initPayment() is deprecated and the order agent is needed by the Unzer payment provider');
-    }
-
     public function startPayment(OrderAgentInterface $orderAgent, PriceInterface $price, AbstractRequest $config): StartPaymentResponseInterface
     {
         if (empty($config['paymentReference'])) {
