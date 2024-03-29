@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * Pimcore
@@ -17,71 +18,47 @@ namespace Pimcore\Bundle\EcommerceFrameworkBundle\PaymentManager\V7\Payment\Star
 
 class UnzerRequest extends AbstractRequest
 {
-    protected $paymentReference;
-    protected $internalPaymentId;
-    protected $returnUrl;
-    protected $errorUrl;
+    protected string|null $paymentReference = null;
+    protected string|null $internalPaymentId = null;
+    protected string $returnUrl;
+    protected string $errorUrl;
 
-    /**
-     * @return mixed
-     */
-    public function getPaymentReference()
+    public function getPaymentReference(): ?string
     {
         return $this->paymentReference;
     }
 
-    /**
-     * @param mixed $paymentReference
-     */
-    public function setPaymentReference($paymentReference): void
+    public function setPaymentReference(?string $paymentReference): void
     {
         $this->paymentReference = $paymentReference;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getInternalPaymentId()
+    public function getInternalPaymentId(): ?string
     {
         return $this->internalPaymentId;
     }
 
-    /**
-     * @param mixed $internalPaymentId
-     */
-    public function setInternalPaymentId($internalPaymentId): void
+    public function setInternalPaymentId(?string $internalPaymentId): void
     {
         $this->internalPaymentId = $internalPaymentId;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getReturnUrl()
+    public function getReturnUrl(): string
     {
         return $this->returnUrl;
     }
 
-    /**
-     * @param mixed $returnUrl
-     */
-    public function setReturnUrl($returnUrl): void
+    public function setReturnUrl(string $returnUrl): void
     {
         $this->returnUrl = $returnUrl;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getErrorUrl()
+    public function getErrorUrl(): string
     {
         return $this->errorUrl;
     }
 
-    /**
-     * @param mixed $errorUrl
-     */
-    public function setErrorUrl($errorUrl): void
+    public function setErrorUrl(string $errorUrl): void
     {
         $this->errorUrl = $errorUrl;
     }

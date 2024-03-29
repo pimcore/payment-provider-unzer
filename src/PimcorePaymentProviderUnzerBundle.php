@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * Pimcore
@@ -31,8 +32,14 @@ class PimcorePaymentProviderUnzerBundle extends AbstractPimcoreBundle
         return 'pimcore/payment-provider-unzer';
     }
 
+    /**
+     * @return Installer
+     */
     public function getInstaller(): Installer
     {
-        return $this->container->get(Installer::class);
+        /** @var Installer $installer */
+        $installer = $this->container->get(Installer::class);
+
+        return $installer;
     }
 }
