@@ -18,8 +18,8 @@ namespace Pimcore\Bundle\EcommerceFrameworkBundle\PaymentManager\V7\Payment\Star
 
 class UnzerRequest extends AbstractRequest
 {
-    protected string|null $paymentReference = null;
-    protected string|null $internalPaymentId = null;
+    protected string | null $paymentReference = null;
+    protected string | null $internalPaymentId = null;
     protected string $returnUrl;
     protected string $errorUrl;
 

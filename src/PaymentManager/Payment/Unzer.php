@@ -17,7 +17,6 @@ declare(strict_types=1);
 namespace Pimcore\Bundle\EcommerceFrameworkBundle\PaymentManager\Payment;
 
 use Carbon\Carbon;
-use Pimcore\Bundle\EcommerceFrameworkBundle\Exception\UnsupportedException;
 use Pimcore\Bundle\EcommerceFrameworkBundle\Exception\UnzerPaymentProviderException;
 use Pimcore\Bundle\EcommerceFrameworkBundle\Factory;
 use Pimcore\Bundle\EcommerceFrameworkBundle\OrderManager\OrderAgentInterface;
@@ -361,7 +360,7 @@ class Unzer extends AbstractPayment
      *
      * @throws UnzerApiException
      */
-    public function getMaxCancelAmount(OnlineShopOrder $order): float|int
+    public function getMaxCancelAmount(OnlineShopOrder $order): float | int
     {
         $unzer = new \UnzerSDK\Unzer($this->privateAccessKey);
         $unzerBrick = $order->getPaymentProvider()?->getPaymentProviderUnzer();
